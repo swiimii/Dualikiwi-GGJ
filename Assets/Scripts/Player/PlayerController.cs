@@ -39,4 +39,9 @@ public class PlayerController : KiwiController
             }
         }
     }
+
+    public override void CollideAction()
+    {
+        DefeatCharacter();
+    }
 }

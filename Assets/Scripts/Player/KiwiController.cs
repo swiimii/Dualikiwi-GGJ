@@ -45,6 +45,10 @@ public abstract class KiwiController : MonoBehaviour
                     StartCoroutine(MoveOneSpace(direction, true));
                 }
             }
+            if (TryRaycast<KiwiController>(direction, out var kiwiController))
+            {
+                CollideAction();
+            }
         }
     }
 
@@ -106,5 +110,7 @@ public abstract class KiwiController : MonoBehaviour
         GetComponent<Animator>().SetBool("IsDead", true);
         // do other things.
     }
+
+    public abstract void CollideAction();
 
 }

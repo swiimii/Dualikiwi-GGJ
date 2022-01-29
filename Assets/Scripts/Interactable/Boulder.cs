@@ -78,5 +78,6 @@ public class Boulder : Interactable
             yield return null;
         }
         GetComponent<SpriteRenderer>().color = Color.grey;
+        transform.position += new Vector3(0, 0, .01f);
     }
 }

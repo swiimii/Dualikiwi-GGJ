@@ -73,6 +73,11 @@ public class EnemyController : KiwiController
         }
     }
 
+    public override void CollideAction()
+    {
+        StartCoroutine(WaitForInteract());
+    }
+
     public enum Direction
     {
         RIGHT = 1,

@@ -13,8 +13,9 @@ public class Bomb : Interactable
 
     public IEnumerator Countdown()
     {
-        float duration = timer + .75f;
+        float duration = timer;
         float elapsed = 0f;
+        GetComponent<Animator>().SetBool("Detonate", true);
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
