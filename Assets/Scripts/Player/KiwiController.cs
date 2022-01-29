@@ -12,6 +12,8 @@ public abstract class KiwiController : MonoBehaviour
 
     protected float actionDuration = .3f;
 
+    public bool IsDefeated = false;
+
     // Update is called once per frame
     protected virtual void Update()
     {
@@ -29,7 +31,7 @@ public abstract class KiwiController : MonoBehaviour
         }
         else
         {
-            if (TryRaycast<Interactable>(direction, out var interactable))
+            if (TryRaycast<Interactable>(direction, out var interactable) && !interactable.isTriggered)
             {
                 interactable.DoInteract(direction);
                 StartCoroutine(WaitForInteract());
@@ -39,7 +41,8 @@ public abstract class KiwiController : MonoBehaviour
             {
                 if (hazard.isDangerActive)
                 {
-                    StartCoroutine(MoveOneSpace(direction));
+                    // move then die
+                    StartCoroutine(MoveOneSpace(direction, true));
                 }
             }
         }
@@ -75,12 +78,6 @@ public abstract class KiwiController : MonoBehaviour
         var origin = transform.position;
         var targetLocation = transform.position + direction.normalized;
 
-        if (Mathf.Abs(direction.x) > .1)
-        {
-            GetComponent<SpriteRenderer>().flipX = direction.x > 0;
-        }
-       
-
         while (progress < actionDuration)
         {
             yield return null;
@@ -90,7 +87,7 @@ public abstract class KiwiController : MonoBehaviour
 
         if (defeatAfterMoving || CheckIfCollidingWithEnemy())
         {
-            GetComponent<CharacterState>().DefeatCharacter();
+            GetComponent<KiwiController>().DefeatCharacter();
         }
 
         isPerformingAction = false;
@@ -101,6 +98,13 @@ public abstract class KiwiController : MonoBehaviour
         var col = GetComponent<BoxCollider2D>();
         var enemyCol = GameObject.FindGameObjectWithTag("Enemy").GetComponent<BoxCollider2D>();
         return col.IsTouching(enemyCol);
+    }
+
+    public void DefeatCharacter()
+    {
+        IsDefeated = true;
+        GetComponent<Animator>().SetBool("IsDead", true);
+        // do other things.
     }
 
 }

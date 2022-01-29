@@ -20,7 +20,7 @@ public class EnemyController : KiwiController
     }
     private void FixedUpdate()
     {
-        if (!isPerformingAction)
+        if (!isPerformingAction && !IsDefeated)
         {
             // Moving Horizontally, not both
             var direction = Vector3.zero;
@@ -55,6 +55,16 @@ public class EnemyController : KiwiController
                 }
                 receivedValidInput = true;
             }
+
+            if (receivedValidInput && Mathf.Abs(direction.x) > .1)
+            {
+                GetComponent<SpriteRenderer>().flipX = direction.x > 0;
+            }
+
+            var animator = GetComponent<Animator>();
+            animator.SetFloat("HorizontalMovement", direction.x);
+            animator.SetFloat("VerticalMovement", direction.y);
+            animator.SetBool("IsInteracting", false); // Set this in TryMoveOrInteract()
 
             if (receivedValidInput)
             {

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    public bool isTriggered = false;
     public abstract void DoInteract(Vector3 direction);
 }
