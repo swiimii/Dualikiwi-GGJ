@@ -108,9 +108,12 @@ public abstract class KiwiController : MonoBehaviour
     {
         IsDefeated = true;
         GetComponent<Animator>().SetBool("IsDead", true);
+        DeathEffect();
         // do other things.
     }
 
     public abstract void CollideAction();
+
+    public abstract void DeathEffect();
 
 }

@@ -78,6 +78,11 @@ public class EnemyController : KiwiController
         StartCoroutine(WaitForInteract());
     }
 
+    public override void DeathEffect()
+    {
+        LevelMenus.Singleton.ShowVictoryMenu();
+    }
+
     public enum Direction
     {
         RIGHT = 1,

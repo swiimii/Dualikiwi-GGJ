@@ -40,6 +40,11 @@ public class PlayerController : KiwiController
         }
     }
 
+    public override void DeathEffect()
+    {
+        LevelMenus.Singleton.ShowDeathMenu();
+    }
+
     public override void CollideAction()
     {
         DefeatCharacter();
