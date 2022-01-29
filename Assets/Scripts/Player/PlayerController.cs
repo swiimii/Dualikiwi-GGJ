@@ -26,6 +26,10 @@ public class PlayerController : KiwiController
                 receivedValidInput = true;
             }
 
+            var animator = GetComponent<Animator>();
+            animator.SetFloat("HorizontalMovement", direction.x);
+            animator.SetFloat("VerticalMovement", direction.y);
+            animator.SetBool("IsInteracting", false); // Set this in TryMoveOrInteract()
             if (receivedValidInput)
             {
                 TryMoveOrInteract(direction);
