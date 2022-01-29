@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MenuScene : MonoBehaviour
 {
+    public static bool alreadyLoadedCredits = false;
     public GameObject title, rightSword, leftSword;
     public GameObject[] interfaceItems;
     public Text[] creditsTextObjects;
@@ -18,13 +19,17 @@ public class MenuScene : MonoBehaviour
     public IEnumerator MainMenuAnimation()
     {
         // menu should pop in after 16 seconds
-        var introDuration = 16f;
-        StartCoroutine(ShowOpeningCredits(introDuration - 1f));
+        if (!alreadyLoadedCredits)
+        {
+            alreadyLoadedCredits = true;
+            var introDuration = 16f;
+            StartCoroutine(ShowOpeningCredits(introDuration - 1f));
+
+            yield return new WaitForSeconds(introDuration - 1f);
+        }
 
         var rightSwordTarget = new Vector3(title.transform.position.x, rightSword.transform.position.y, rightSword.transform.position.z);
         var leftSwordTarget = new Vector3(title.transform.position.x, leftSword.transform.position.y, leftSword.transform.position.z);
-
-        yield return new WaitForSeconds(introDuration - 1f);
 
         StartCoroutine(MoveToPosition(rightSword, rightSwordTarget, 1f));
         StartCoroutine(MoveToPosition(leftSword, leftSwordTarget, 1f));
@@ -82,6 +87,7 @@ public class MenuScene : MonoBehaviour
             item.gameObject.SetActive(false);
         }
     }
+
 
 
 }
