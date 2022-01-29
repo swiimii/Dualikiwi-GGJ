@@ -5,8 +5,10 @@ using UnityEngine;
 public class Boulder : Interactable
 {
 
-    public bool isTriggered = false;
     public bool isHittingObject = false;
+    public bool isDangerous = false;
+
+    bool isBeingDestroyed = true;
 
     public override void DoInteract(Vector3 direction)
     {
@@ -19,10 +21,25 @@ public class Boulder : Interactable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isTriggered)
+        if (isTriggered && !collision.gameObject.GetComponent<Detonation>())
         {
             isHittingObject = true;
             print("Boulder hit");
+            
+            if (collision.gameObject.TryGetComponent<Spikes>(out var spikes))
+            {
+                isDangerous = false;
+                isBeingDestroyed = false;
+                print("Hit spikes!");
+                spikes.isDangerActive = false;
+                StartCoroutine(FallIntoPit(spikes.transform));
+                GetComponent<Collider2D>().enabled = false;
+                spikes.GetComponent<Collider2D>().enabled = false;
+            }
+            else if (collision.gameObject.TryGetComponent<KiwiController>(out var kiwiController))
+            {
+                kiwiController.DefeatCharacter();
+            }
         }
     }
 
@@ -30,6 +47,10 @@ public class Boulder : Interactable
     {
         // start roll. become lethal on contact after .5s
         // on hitting object, stop lethal, then destroy self.
+
+        // if a pit is collided with, this coroutine will be
+        // interrupted
+        isDangerous = true;
         var speed = 3f;
         while (!isHittingObject)
         {
@@ -38,6 +59,24 @@ public class Boulder : Interactable
         }
 
         yield return new WaitForSeconds(1);
-        Destroy(gameObject);
+        if (isBeingDestroyed)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public IEnumerator FallIntoPit(Transform pitLocation)
+    {
+        var moveDuration = .28f;
+        var progress = 0f;
+        var origin = transform.position;
+
+        while (progress < moveDuration)
+        {
+            progress += Time.deltaTime;
+            transform.position = Vector2.Lerp(origin, pitLocation.position, progress / moveDuration);
+            yield return null;
+        }
+        GetComponent<SpriteRenderer>().color = Color.grey;
     }
 }

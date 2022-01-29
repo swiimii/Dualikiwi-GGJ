@@ -20,7 +20,7 @@ public class EnemyController : KiwiController
     }
     private void FixedUpdate()
     {
-        if (!isPerformingAction)
+        if (!isPerformingAction && !IsDefeated)
         {
             // Moving Horizontally, not both
             var direction = Vector3.zero;
