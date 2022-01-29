@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class CharacterState : MonoBehaviour
 {
     public bool IsDefeated = false;
 
-    public void DefeatPlayer()
+    public void DefeatCharacter()
     {
         IsDefeated = true;
         print("ded");
