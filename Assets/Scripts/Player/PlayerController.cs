@@ -26,6 +26,11 @@ public class PlayerController : KiwiController
                 receivedValidInput = true;
             }
 
+            if (receivedValidInput && Mathf.Abs(direction.x) > .1)
+            {
+                GetComponent<SpriteRenderer>().flipX = direction.x > 0;
+            }
+
             var animator = GetComponent<Animator>();
             animator.SetFloat("HorizontalMovement", direction.x);
             animator.SetFloat("VerticalMovement", direction.y);

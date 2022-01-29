@@ -75,12 +75,6 @@ public abstract class KiwiController : MonoBehaviour
         var origin = transform.position;
         var targetLocation = transform.position + direction.normalized;
 
-        if (Mathf.Abs(direction.x) > .1)
-        {
-            GetComponent<SpriteRenderer>().flipX = direction.x > 0;
-        }
-       
-
         while (progress < actionDuration)
         {
             yield return null;
