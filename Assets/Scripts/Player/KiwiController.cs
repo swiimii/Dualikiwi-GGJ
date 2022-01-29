@@ -10,7 +10,7 @@ public abstract class KiwiController : MonoBehaviour
 
     protected bool isPerformingAction = false;
 
-    protected float actionDuration = .25f;
+    protected float actionDuration = .3f;
 
     // Update is called once per frame
     protected virtual void Update()
@@ -21,6 +21,7 @@ public abstract class KiwiController : MonoBehaviour
 
     public void TryMoveOrInteract(Vector3 direction)
     {
+
         if (!TryRaycast<Transform>(direction, out var tf))
         {
             // If raycast doesn't hit anything, move one space.
@@ -58,8 +59,11 @@ public abstract class KiwiController : MonoBehaviour
 
     public IEnumerator WaitForInteract()
     {
+        var animator = GetComponent<Animator>();
         isPerformingAction = true;
+        animator.SetBool("IsInteracting", true);
         yield return new WaitForSeconds(actionDuration);
+        animator.SetBool("IsInteracting", false);
         isPerformingAction = false;
     }
 
@@ -70,6 +74,12 @@ public abstract class KiwiController : MonoBehaviour
         
         var origin = transform.position;
         var targetLocation = transform.position + direction.normalized;
+
+        if (Mathf.Abs(direction.x) > .1)
+        {
+            GetComponent<SpriteRenderer>().flipX = direction.x > 0;
+        }
+       
 
         while (progress < actionDuration)
         {
