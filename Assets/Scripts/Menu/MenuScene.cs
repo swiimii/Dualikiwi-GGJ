@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class MenuScene : MonoBehaviour
 {
-    public GameObject title, rightSword, leftSword, menuInterface;
+    public GameObject title, rightSword, leftSword;
+    public GameObject[] interfaceItems;
     public Text[] creditsTextObjects;
 
     // Start is called before the first frame update
@@ -30,8 +31,11 @@ public class MenuScene : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        title.SetActive(true);;
-        menuInterface.SetActive(true);
+        title.SetActive(true);
+        foreach(var item in interfaceItems)
+        {
+            item.SetActive(true);
+        }
 
         var cam = Camera.main;
 
