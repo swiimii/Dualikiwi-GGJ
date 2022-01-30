@@ -32,14 +32,16 @@ public class LevelMenus : MonoBehaviour
         {
             isShowingMenu = true;
             victoryMenu.SetActive(true);
+
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            PlayerPrefs.SetInt("LevelsCompleted", sceneIndex); // Main menu is index 0, level 1 is index 1, etc... 
+            PlayerPrefs.Save();
         }
     }
 
     public void LoadNextLevel()
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("LevelsCompleted", sceneIndex); // Main menu is index 0, level 1 is index 1, etc... 
-        PlayerPrefs.Save();
         SceneManager.LoadScene(sceneIndex + 1);
     }
 }
