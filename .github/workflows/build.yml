@@ -23,13 +23,13 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows64
-          buildName: StandaloneWindows64.zip
+          buildName: StandaloneWindows64
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: WindowsStandalone64.zip
+          path: WindowsStandalone64
   
   build-webgl:
     name: Create WebGL build
@@ -48,13 +48,13 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: WebGL
-          buildName: WebGL.zip
+          buildName: WebGL
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: WebGL.zip
+          path: WebGL
   
   build-android:
     name: Create Android build
@@ -73,10 +73,10 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: Android
-          buildName: Android.zip
+          buildName: Android
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: Android.zip
+          path: Android
