@@ -6,8 +6,8 @@ on:
      - main
 
 jobs:
-  build:
-    name: Create windows build
+  build-windows:
+    name: Create Windows build
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -23,17 +23,33 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows64
-      
-      # Build
-      - name: Build webgl
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          targetPlatform: WebGL
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: build
+          path: WindowsStandalone64.zip
+  
+  build-webgl:
+    name: Create WebGL build
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      
+      # Build
+      - name: Build windows
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: StandaloneWindows64
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: WebGL.zip
