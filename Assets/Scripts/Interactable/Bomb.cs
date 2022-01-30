@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bomb : Interactable
 {
-    public int timer = 3;
+    public float timer = 3;
     public GameObject detonationPrefab;
     public override void DoInteract(Vector3 direction)
     {

@@ -7,6 +7,7 @@ public class Boulder : Interactable
 
     public bool isHittingObject = false;
     public bool isDangerous = false;
+    public bool canTriggerOthers = false;
 
     bool isBeingDestroyed = true;
 
@@ -25,7 +26,7 @@ public class Boulder : Interactable
         {
             isHittingObject = true;
             print("Boulder hit");
-            
+
             if (collision.gameObject.TryGetComponent<Spikes>(out var spikes))
             {
                 isDangerous = false;
@@ -39,6 +40,10 @@ public class Boulder : Interactable
             else if (collision.gameObject.TryGetComponent<KiwiController>(out var kiwiController))
             {
                 kiwiController.DefeatCharacter();
+            }
+            else if (canTriggerOthers && collision.gameObject.TryGetComponent<Interactable>(out var interactable))
+            {
+                interactable.DoInteract(interactable.transform.position - transform.position);
             }
         }
     }

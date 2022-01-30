@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3347152499053934082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 570764606962572057, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570764606962572057, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570764606962572057, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570764606962572057, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570764606962572058, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6624564900204519675, guid: db0d0d44e6283a146b90e62d8646a7f6, type: 3}
+    - target: {fileID: 570764606962572059, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
+      propertyPath: canTriggerOthers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 570764606962572062, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
+      propertyPath: m_Name
+      value: Spicy Boulder
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c094488a4ef5b4d44bf9402a4b008f3c, type: 3}
