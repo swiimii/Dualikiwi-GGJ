@@ -36,7 +36,7 @@ public class MenuScene : MonoBehaviour
         StartCoroutine(MoveToPosition(leftSword, leftSwordTarget, 1f));
 
         yield return new WaitForSeconds(1f);
-
+        GetComponent<AudioSource>().Play();
         title.SetActive(true);
         foreach(var item in interfaceItems)
         {

@@ -48,6 +48,7 @@ public abstract class KiwiController : MonoBehaviour
                 {
                     // move then die
                     StartCoroutine(MoveOneSpace(direction, true));
+                    hazard.GetComponent<AudioSource>().PlayDelayed(actionDuration);
                 }
             }
             if (TryRaycast<KiwiController>(direction, out var kiwiController))
