@@ -7,6 +7,7 @@ public class MenuScene : MonoBehaviour
 {
     public static bool alreadyLoadedCredits = false;
     public GameObject title, rightSword, leftSword;
+    public GameObject exitButton;
     public GameObject[] interfaceItems;
     public Text[] creditsTextObjects;
 
@@ -41,9 +42,12 @@ public class MenuScene : MonoBehaviour
         {
             item.SetActive(true);
         }
-        
+#if !UNITY_ANDROID
+        exitButton.SetActive(true);
+#endif
+
     }
-    
+
     public IEnumerator MoveToPosition(GameObject obj, Vector3 target, float duration)
     {
         var origin = obj.transform.position;
@@ -76,6 +80,10 @@ public class MenuScene : MonoBehaviour
         }
     }
 
+    public void DoQuit()
+    {
+        Application.Quit();
+    }
 
 
 }

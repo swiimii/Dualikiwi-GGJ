@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class CanvasToggle : MonoBehaviour
 {
-    public GameObject canvas1, canvas2;
+    public GameObject[] canvases;
 
-    public void ToggleCanvas()
+    public void ToggleCanvas(int index)
     {
-        if (canvas1.activeInHierarchy)
+        for (int i = 0; i < canvases.Length; i++)
         {
-            canvas2.SetActive(true);
-            canvas1.SetActive(false);
-        }
-        else
-        {
-            canvas1.SetActive(true);
-            canvas2.SetActive(false);
+            if (i == index)
+            {
+                canvases[i].SetActive(true);
+            }
+            else
+            {
+                canvases[i].SetActive(false);
+            }
         }
     }
 }
