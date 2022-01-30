@@ -112,10 +112,12 @@ public abstract class KiwiController : MonoBehaviour
 
     public void DefeatCharacter()
     {
-        IsDefeated = true;
-        GetComponent<Animator>().SetBool("IsDead", true);
-        DeathEffect();
-        // do other things.
+        if (!IsDefeated)
+        {
+            IsDefeated = true;
+            GetComponent<Animator>().SetBool("IsDead", true);
+            DeathEffect();
+        }
     }
 
     public abstract void CollideAction();
@@ -123,3 +125,4 @@ public abstract class KiwiController : MonoBehaviour
     public abstract void DeathEffect();
 
 }
+ 

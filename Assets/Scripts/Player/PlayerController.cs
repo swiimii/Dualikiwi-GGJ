@@ -42,6 +42,7 @@ public class PlayerController : KiwiController
 
     public override void DeathEffect()
     {
+        
         GetComponent<AudioSource>().Play();
         StartCoroutine(LevelMenus.Singleton.ShowDeathMenu());
     }
