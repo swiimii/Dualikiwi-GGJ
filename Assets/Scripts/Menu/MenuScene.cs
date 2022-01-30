@@ -41,18 +41,6 @@ public class MenuScene : MonoBehaviour
         {
             item.SetActive(true);
         }
-
-        var cam = Camera.main;
-
-        var elapsed = 0f;
-        while (true)
-        {
-            yield return null;
-            elapsed += Time.deltaTime;
-            var colorVal = (Mathf.Sin(elapsed) + 1f) * .2f + .1f;
-            // print(colorVal);
-            cam.backgroundColor = new Color(colorVal, colorVal, colorVal);
-        }
         
     }
     

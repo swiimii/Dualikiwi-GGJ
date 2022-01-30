@@ -80,7 +80,7 @@ public class EnemyController : KiwiController
 
     public override void DeathEffect()
     {
-        LevelMenus.Singleton.ShowVictoryMenu();
+        StartCoroutine(LevelMenus.Singleton.ShowVictoryMenu());
     }
 
     public enum Direction
