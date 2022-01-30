@@ -8,6 +8,7 @@ public class Boulder : Interactable
     public bool isHittingObject = false;
     public bool isDangerous = false;
     public bool canTriggerOthers = false;
+    public AudioClip rockSmash;
 
     bool isBeingDestroyed = true;
 
@@ -16,6 +17,7 @@ public class Boulder : Interactable
         if (!isTriggered)
         {
             isTriggered = true;
+            GetComponent<AudioSource>().Play();
             StartCoroutine(BoulderRoll(direction));
         }
     }
@@ -25,6 +27,8 @@ public class Boulder : Interactable
         if (isTriggered && !collision.gameObject.GetComponent<Detonation>())
         {
             isHittingObject = true;
+            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().PlayOneShot(rockSmash);
             print("Boulder hit");
 
             if (collision.gameObject.TryGetComponent<Spikes>(out var spikes))

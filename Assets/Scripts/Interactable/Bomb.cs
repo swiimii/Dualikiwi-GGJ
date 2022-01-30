@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Bomb : Interactable
 {
@@ -10,6 +11,7 @@ public class Bomb : Interactable
     {
         if (!isTriggered)
         {
+            GetComponent<AudioSource>().Play();
             isTriggered = true;
             StartCoroutine(Countdown());
         }
