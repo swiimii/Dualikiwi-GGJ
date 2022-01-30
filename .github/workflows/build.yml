@@ -17,7 +17,7 @@ jobs:
           lfs: true
       
       # Build
-      - name: Build windows
+      - name: Build 
         uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -41,7 +41,7 @@ jobs:
           lfs: true
       
       # Build
-      - name: Build windows
+      - name: Build
         uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -65,7 +65,7 @@ jobs:
           lfs: true
       
       # Build
-      - name: Build windows
+      - name: Build
         uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -76,4 +76,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: WebGL.zip
+          path: Android-app.zip
