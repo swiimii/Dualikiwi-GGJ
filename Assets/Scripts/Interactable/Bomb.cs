@@ -8,7 +8,11 @@ public class Bomb : Interactable
     public GameObject detonationPrefab;
     public override void DoInteract(Vector3 direction)
     {
-        StartCoroutine(Countdown());
+        if (!isTriggered)
+        {
+            isTriggered = true;
+            StartCoroutine(Countdown());
+        }
     }
 
     public IEnumerator Countdown()
