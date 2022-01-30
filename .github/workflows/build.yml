@@ -23,6 +23,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows64
+          buildName: StandaloneWindows64.zip
 
       # Output
       - uses: actions/upload-artifact@v2
@@ -46,7 +47,8 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform: StandaloneWindows64
+          targetPlatform: WebGL
+          buildName: WebGL.zip
 
       # Output
       - uses: actions/upload-artifact@v2
@@ -70,10 +72,11 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform: StandaloneWindows64
+          targetPlatform: Android
+          buildName: Android.zip
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: Android-app.zip
+          path: Android.zip
