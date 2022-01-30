@@ -7,6 +7,8 @@ public class MusicContainer : MonoBehaviour
 {
     public AudioMixer mixer;
 
+    public AudioClip introClip;
+
     private void Awake()
     {
         
@@ -22,11 +24,10 @@ public class MusicContainer : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         var musicVol = PlayerPrefs.GetFloat("Music", .5f);
         mixer.SetFloat("Music", Mathf.Log10(musicVol) * 20 );
+
+        var source = GetComponent<AudioSource>();
+        source.PlayOneShot(introClip);
+        source.PlayDelayed(introClip.length);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
