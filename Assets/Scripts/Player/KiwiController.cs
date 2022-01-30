@@ -17,8 +17,13 @@ public abstract class KiwiController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        horizontalMovement = Input.acceleration.x / 2;
+        verticalMovement = Input.acceleration.y / 2;
+#else
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
+#endif
     }
 
     public void TryMoveOrInteract(Vector3 direction)
