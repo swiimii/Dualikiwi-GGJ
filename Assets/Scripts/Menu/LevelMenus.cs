@@ -34,7 +34,8 @@ public class LevelMenus : MonoBehaviour
             victoryMenu.SetActive(true);
 
             int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            PlayerPrefs.SetInt("LevelsCompleted", sceneIndex); // Main menu is index 0, level 1 is index 1, etc... 
+            int maxLevelsComplete = PlayerPrefs.HasKey("LevelsCompleted") ? PlayerPrefs.GetInt("LevelsCompleted") : 0;
+            PlayerPrefs.SetInt("LevelsCompleted", Mathf.Max(sceneIndex, maxLevelsComplete)); // Main menu is index 0, level 1 is index 1, etc... 
             PlayerPrefs.Save();
         }
     }
